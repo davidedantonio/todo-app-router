@@ -1,4 +1,6 @@
 <template>
+  <Notification />
+  <Loader />
   <div id="nav">
     <router-link to="/">Todo</router-link> |
     <router-link to="/done">Done</router-link>
@@ -6,6 +8,17 @@
   <router-view />
 </template>
 
+<script>
+import Loader from './components/globals/Loader'
+import Notification from './components/globals/Notification'
+
+export default {
+  components: {
+    Loader,
+    Notification
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

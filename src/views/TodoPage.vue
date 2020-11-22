@@ -1,6 +1,6 @@
 <template>
-  <TodoForm @todo-added="newTodoAdded" />
-  <TodoList :finished="false" ref="todoList" />
+  <TodoForm />
+  <TodoList :finished="false" />
 </template>
 
 <script>
@@ -11,11 +11,6 @@ export default {
   components: {
     TodoList,
     TodoForm
-  },
-  methods: {
-    newTodoAdded() {
-      this.$refs.todoList.getTodoList()
-    }
   }
 }
 </script>
