@@ -1,7 +1,7 @@
 <template>
   <div class="todo-list">
     <TodoItem
-      v-for="todo in todos"
+      v-for="todo in todo.todos"
       :key="todo.id"
       :todoItem="todo"
       @change-todo="changeTodo"
@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import * as todoService from '../services/todoService'
 import TodoItem from './TodoItem'
+import { mapState } from 'vuex'
 
 export default {
   props: {
@@ -23,29 +23,20 @@ export default {
   components: {
     TodoItem
   },
-  data() {
-    return {
-      todos: []
-    }
+  computed: {
+    ...mapState(['todo'])
   },
   created() {
-    this.getTodoList()
+    this.fetchAllTodos()
   },
   methods: {
     changeTodo(todo) {
       todo.finished = !todo.finished
-      todoService
-        .updateTodo(todo)
-        .then(() => this.getTodoList())
-        .catch(e => console.log('Error while saving todo' + e.message))
+      this.$store.dispatch('todo/updateTodo', todo)
+      this.fetchAllTodos()
     },
-    getTodoList() {
-      todoService
-        .getAllTodos(this.finished)
-        .then(response => {
-          this.todos = response
-        })
-        .catch(e => console.log(e))
+    fetchAllTodos() {
+      this.$store.dispatch('todo/fetchTodos', this.finished)
     }
   }
 }

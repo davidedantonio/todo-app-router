@@ -1,8 +1,8 @@
 import { defaultClient } from './common'
 
-export const getAllTodos = async finshed => {
+export const getAllTodos = async () => {
   try {
-    const response = await defaultClient.get(`/todos?finished=${finshed}`)
+    const response = await defaultClient.get(`/todos`)
     return response.data
   } catch (e) {
     throw new Error(e)

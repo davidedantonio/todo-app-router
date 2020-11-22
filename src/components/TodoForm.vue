@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import * as todoService from '../services/todoService'
 export default {
   data() {
     return {
@@ -15,19 +14,8 @@ export default {
   },
   methods: {
     addNewTodo() {
-      const newTodo = {
-        description: this.newTodo,
-        createdOn: new Date(),
-        finished: false
-      }
-
-      todoService
-        .createTodo(newTodo)
-        .then(() => {
-          this.$emit('todo-added')
-          this.newTodo = ''
-        })
-        .catch(e => console.log(e))
+      this.$store.dispatch('todo/createTodo', this.newTodo)
+      this.newTodo = ''
     }
   }
 }
