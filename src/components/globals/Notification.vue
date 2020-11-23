@@ -40,11 +40,6 @@ export default {
       }
     }
   },
-  data() {
-    return {
-      visible: false
-    }
-  },
   computed: {
     icon() {
       let icon = ''

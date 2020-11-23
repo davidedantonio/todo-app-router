@@ -26,6 +26,10 @@ export const actions = {
     try {
       const todos = await todoService.getAllTodos()
       commit('SET_TODOS', getters.getTodosByState(todos, finished))
+      dispatch('notification/showNotification', {
+        message: 'Todo list loaded successfully',
+        severity: 'success'
+      }, { root: true })
     } catch (e) {
       console.log(e)
     } finally {
@@ -36,8 +40,15 @@ export const actions = {
     try {
       dispatch('loader/loading', true, { root: true })
       await todoService.updateTodo(todo)
+      dispatch('notification/showNotification', {
+        message: 'Todo updated successfully',
+        severity: 'success'
+      }, { root: true })
     } catch (e) {
-      console.log(e)
+      dispatch('notification/showNotification', {
+        message: e.response.data.message,
+        severity: 'error'
+      }, { root: true })
     } finally {
       dispatch('loader/loading', false, { root: true })
     }
@@ -54,8 +65,15 @@ export const actions = {
     try {
       await todoService.createTodo(newTodo)
       commit('ADD_TODO', newTodo)
+      dispatch('notification/showNotification', {
+        message: 'Todo added successfully',
+        severity: 'success'
+      }, { root: true })
     } catch (e) {
-      console.log(e)
+      dispatch('notification/showNotification', {
+        message: e.response.data.message,
+        severity: 'error'
+      }, { root: true })
     } finally {
       dispatch('loader/loading', false, { root: true })
     }

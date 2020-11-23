@@ -16,13 +16,25 @@
       "id": 1605715923990,
       "description": "Meeting with Webeetle",
       "createdOn": "2020-05-20T18:25:43.511Z",
-      "finished": true
+      "finished": false
     },
     {
       "id": 1606039139686,
       "description": "Read newspaper",
       "createdOn": "2020-11-22T09:58:59.686Z",
       "finished": false
+    },
+    {
+      "id": 1606111797612,
+      "description": "test",
+      "createdOn": "2020-11-23T06:09:57.612Z",
+      "finished": true
+    },
+    {
+      "id": 1606112937502,
+      "description": "Read newspaper",
+      "createdOn": "2020-11-23T06:28:57.502Z",
+      "finished": true
     }
   ]
 }
